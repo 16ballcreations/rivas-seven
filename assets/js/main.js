@@ -9,6 +9,7 @@
 
   // ── Letras: cada palabra en su span para iluminarla con el scroll
   const lyricsBlock = document.getElementById('letras');
+  const lyricsStage = lyricsBlock.querySelector('.lyrics__stage');
   const lyricWords = [...lyricsBlock.querySelectorAll('[data-line]')].flatMap(line => {
     const words = line.textContent.trim().split(/\s+/);
     line.innerHTML = words.map(w => `<span class="w">${w}</span>`).join(' ');
@@ -46,7 +47,9 @@
     if (!reduced) {
       // Todas las palabras se encienden a lo largo del tramo fijo de la sección
       const r = lyricsBlock.getBoundingClientRect();
-      const p = clamp((vh * 0.35 - r.top) / (r.height - vh * 0.7));
+      // Termina de encenderse al 70 % del tramo fijo, antes de que el bloque se suelte
+      const pin = r.height - lyricsStage.offsetHeight;
+      const p = clamp((vh * 0.3 - r.top) / (vh * 0.3 + pin * 0.7));
       const lit = Math.round(p * lyricWords.length);
       lyricWords.forEach((w, i) => w.classList.toggle('on', i < lit));
     }

@@ -53,7 +53,7 @@ body {
   background: var(--noche);
   color: var(--fg);
   font: 400 1rem/1.6 var(--f-body);
-  overflow-x: hidden;
+  overflow-x: clip;
   transition: color .6s var(--ease);
 }
 img { display: block; max-width: 100%; }
@@ -222,7 +222,7 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
 .video__label { position: absolute; left: 20px; bottom: 16px; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--crema); background: rgba(18, 8, 31, .6); padding: 8px 12px; border-radius: 999px; }
 
 /* ───────── 3 · Letras ───────── */
-.lyrics { height: 240vh; position: relative; }
+.lyrics { height: 170vh; height: 170svh; position: relative; }
 .lyrics__stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: clamp(8px, 1.5vh, 16px); padding: 72px var(--gutter) 0; max-width: var(--maxw); margin: 0 auto; }
 .lyrics__meta { margin: 0 0 8px; font-size: .75rem; letter-spacing: .28em; text-transform: uppercase; color: var(--lila); }
 .lyrics__lines { margin: 0; display: grid; gap: clamp(4px, 1vh, 12px); }
@@ -235,6 +235,8 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
 .lyrics__foot { margin: 0; text-align: center; font-size: .8rem; letter-spacing: .28em; text-transform: uppercase; color: var(--mango); }
 
 /* ───────── 4 · Dos caras ───────── */
+/* Las letras ya dejan aire arriba: la sección siguiente arranca más cerca */
+.faces.section { padding-top: clamp(24px, 4vw, 64px); }
 .faces__split { display: grid; grid-template-columns: 1fr 1fr; margin-top: 56px; }
 .face { position: relative; isolation: isolate; overflow: hidden; padding: clamp(40px, 6vw, 88px) var(--gutter); min-height: 520px; display: flex; flex-direction: column; justify-content: flex-end; }
 .face--night { background: linear-gradient(160deg, var(--uva), var(--violeta-noche)); color: var(--crema); }
@@ -391,7 +393,7 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
   .socials { grid-template-columns: repeat(2, auto); }
   .shot--wide { grid-column: span 2; }
   .hero__line--outline { -webkit-text-stroke-width: 1.5px; }
-  .lyrics { height: 200vh; }
+  .lyrics { height: 160vh; height: 160svh; }
   .lyrics__line--right { text-align: left; }
 }
 
