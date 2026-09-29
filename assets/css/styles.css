@@ -47,7 +47,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
 body {
   margin: 0;
   background: var(--noche);
@@ -341,7 +341,7 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
   .nav.is-open .nav__links { opacity: 1; pointer-events: auto; }
   .nav.is-open { color: var(--crema); }
   .nav.is-open .logo { filter: none !important; mix-blend-mode: screen !important; }
-  .nav__toggle { display: grid; gap: 6px; width: 40px; height: 40px; place-content: center; padding: 0; border: 0; background: none; cursor: pointer; }
+  .nav__toggle { display: grid; gap: 6px; width: 44px; height: 44px; place-content: center; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; }
   .nav__toggle span { display: block; width: 24px; height: 2px; background: currentColor; transition: transform .3s var(--ease); }
   .nav.is-open .nav__toggle span:first-child { transform: translateY(4px) rotate(45deg); }
   .nav.is-open .nav__toggle span:last-child { transform: translateY(-4px) rotate(-45deg); }
@@ -359,14 +359,45 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
   .hero__media::after { background: linear-gradient(0deg, var(--noche) 5%, rgba(18, 8, 31, .7) 45%, rgba(18, 8, 31, .15) 100%); }
 }
 @media (max-width: 560px) {
+  .section { padding: 72px 0; }
+  .nav { padding-top: 10px; padding-bottom: 10px; }
+  .nav__end { gap: 8px; }
+
+  /* Portada: la cara arriba, el texto sobre el cuerpo y aire para el botón inferior */
+  .hero { padding-bottom: 104px; }
+  .hero__media img { object-position: 35% 12%; }
+  .hero__tag { margin: 20px 0 24px; }
+  .hero__cta { flex-wrap: nowrap; gap: 10px; }
+  .hero__cta .btn { padding: 14px 18px; font-size: .74rem; letter-spacing: .1em; white-space: nowrap; }
+  .hero__sign { margin-top: 20px; }
+
+  /* Letras: «Desprendiéndome.» cabe completo en el ancho */
+  .lyrics__turn { font-size: calc((100vw - 2 * var(--gutter)) / 7.6); }
+
+  .face { min-height: 380px; }
+  .story__grid { gap: 32px; }
+  .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .facts dt { font-size: 2.2rem; }
+  .facts dd { font-size: .76rem; hyphens: auto; overflow-wrap: anywhere; }
+  .disc { padding: 22px 0; }
+  .contact__actions .btn { width: 100%; justify-content: center; }
+  .form { padding: 24px 20px; }
+  .footer { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  .footer__base { flex-direction: column; gap: 6px; }
+
+  .next { width: 46px; height: 46px; bottom: calc(14px + env(safe-area-inset-bottom)); }
   .nav__brand span { display: none; }
-  .facts { grid-template-columns: 1fr; gap: 16px; }
-  .form__row { grid-template-columns: 1fr; }
+  .form__row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .socials { grid-template-columns: repeat(2, auto); }
   .shot--wide { grid-column: span 2; }
   .hero__line--outline { -webkit-text-stroke-width: 1.5px; }
   .lyrics { height: 200vh; }
   .lyrics__line--right { text-align: left; }
+}
+
+@media (max-width: 360px) {
+  .hero__cta { flex-wrap: wrap; }
+  .hero__name { font-size: 4.6rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
