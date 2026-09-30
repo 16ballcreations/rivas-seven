@@ -10,11 +10,12 @@
   <meta property="og:title" content="Rivas Seven — Último Estado">
   <meta property="og:description" content="El primero del álbum Desprendiéndome. Ya disponible.">
   <meta property="og:image" content="https://i.ytimg.com/vi/vY6bYel8ICk/maxres2.jpg">
-  <link rel="icon" href="assets/img/logo-s7-original.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=5">
+  <link rel="stylesheet" href="assets/css/styles.css?v=6">
 </head>
 <body>
   <!-- Cielo fijo: la noche violeta de fondo, el amanecer que sube y el sol -->
@@ -27,7 +28,7 @@
 
   <header class="nav">
     <a class="nav__brand" href="#inicio" aria-label="Rivas Seven, inicio">
-      <img class="logo" src="assets/img/logo-s7-original.png" alt="" width="40" height="40">
+      <img class="logo" src="assets/img/logo-s7-512.png" alt="" width="40" height="40">
       <span>Rivas Seven</span>
     </a>
     <nav class="nav__links" id="menu" aria-label="Principal">
@@ -55,6 +56,11 @@
         <img src="assets/img/sesion-2024/rs-sesion-05.jpg" alt="Rivas Seven sentado en una silla en medio de la calle, de noche" fetchpriority="high">
       </figure>
       <div class="hero__content">
+        <div class="hero__mark" aria-hidden="true">
+          <video class="hero__anim" muted playsinline autoplay preload="auto" width="480" height="480">
+            <source src="assets/video/logo-animacion.mp4" type="video/mp4">
+          </video>
+        </div>
         <p class="eyebrow reveal"><span class="dot"></span> Nuevo sencillo · Ya disponible</p>
         <h1 class="hero__name" aria-label="Rivas Seven">
           <span class="hero__line reveal">Rivas</span>
@@ -250,7 +256,7 @@
   <footer class="footer" data-theme="dark">
     <div class="wrap footer__grid">
       <div class="footer__brand">
-        <img class="logo logo--lg" src="assets/img/logo-s7-original.png" alt="Logo de Rivas Seven" width="120" height="120" loading="lazy">
+        <img class="logo logo--lg" src="assets/img/logo-s7-512.png" alt="Logo de Rivas Seven" width="120" height="120" loading="lazy">
         <p>Únete, que esto va a ser grande.</p>
       </div>
       <ul class="socials">
@@ -275,6 +281,6 @@
   </button>
 
   <div class="toast" role="status" aria-live="polite"></div>
-  <script src="assets/js/main.js?v=5" defer></script>
+  <script src="assets/js/main.js?v=6" defer></script>
 </body>
 </html>

@@ -47,7 +47,9 @@ Las fotos se pasan a blanco y negro y se tiñen con un degradado violeta → man
 | `index.html` | La página completa (una sola, con anclas) |
 | `assets/css/styles.css` | Estilos y tokens de color |
 | `assets/js/main.js` | Amanecer con el scroll, letras palabra a palabra, video bajo demanda, menú móvil |
-| `assets/img/logo-s7-original.png` | Logo sacado de un video (blanco sobre negro) |
+| `assets/img/logo-s7.png`, `logo-s7-512.png` | Logo oficial recortado al círculo, fondo transparente |
+| `assets/img/favicon-64.png`, `apple-touch-icon.png` | Íconos de pestaña y de pantalla de inicio |
+| `assets/video/logo-animacion.mp4` | Animación del logo (480 px, sin audio) que se reproduce una vez sobre el nombre |
 | `docs/` | Notas de la propuesta |
 
 Sin frameworks ni build. Lleva `noindex`. El formulario no usa servidor: abre el correo del
@@ -76,7 +78,7 @@ Por confirmar antes de publicar:
 - [ ] Kit de prensa (PDF)
 - [ ] Si «Iracema» y «Sándalo» van en la cara «de día» (hoy están ahí por ser afrobeat)
 - [ ] Unificar su nombre en plataformas: Instagram dice «Rivas Seven», Spotify/TikTok/SoundCloud «Seven Rivas»
-- [ ] Logo en vector (el PNG actual es de baja resolución y viene de un fotograma)
+- [x] Logo oficial en PNG transparente (sigue siendo útil tenerlo en vector)
 
 ## Idiomas
 

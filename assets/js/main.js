@@ -92,6 +92,20 @@
   addEventListener('scroll', syncNext, { passive: true });
   syncNext();
 
+  // ── Animación del logo en la portada: se reproduce una vez y queda en el último cuadro.
+  // Sin movimiento reducido o si el navegador bloquea el autoplay, se muestra el logo fijo.
+  const anim = document.querySelector('.hero__anim');
+  if (anim) {
+    const toStatic = () => {
+      const img = document.createElement('img');
+      img.src = 'assets/img/logo-s7-512.png';
+      img.alt = '';
+      anim.replaceWith(img);
+    };
+    if (reduced) toStatic();
+    else anim.play().catch(toStatic);
+  }
+
   // ── Video: carga el reproductor de YouTube solo al hacer clic
   document.querySelectorAll('[data-yt]').forEach(btn => btn.addEventListener('click', () => {
     const iframe = document.createElement('iframe');

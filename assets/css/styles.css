@@ -107,9 +107,9 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
 }
 
 /* ───────── Logo (PNG blanco sobre negro: se funde con el fondo) ───────── */
-.logo { clip-path: circle(47% at 50% 48%); mix-blend-mode: screen; transition: filter .6s; }
+.logo { transition: filter .6s; }
 :root[data-theme="dawn"] .nav .logo,
-:root[data-theme="light"] .nav .logo { filter: invert(1); mix-blend-mode: multiply; }
+:root[data-theme="light"] .nav .logo { filter: invert(1); }
 .logo--lg { width: 120px; height: 120px; }
 
 /* ───────── Navegación ───────── */
@@ -170,7 +170,7 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
 @keyframes pulse { 70% { box-shadow: 0 0 0 12px rgba(255, 200, 61, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 200, 61, 0); } }
 
 /* ───────── 1 · Portada ───────── */
-.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding: 120px var(--gutter) clamp(72px, 10vh, 120px); overflow: hidden; }
+.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding: 96px var(--gutter) clamp(72px, 10vh, 120px); overflow: hidden; }
 .hero__media { position: absolute; inset: 0; margin: 0; z-index: -1; }
 .hero__media img {
   width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%;
@@ -194,8 +194,13 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
   .hero__media::after { background: linear-gradient(0deg, var(--noche) 0%, rgba(18, 8, 31, 0) 35%); }
 }
 @keyframes breathe { to { transform: scale(1.14) translateX(-1.5%); } }
+/* Animación del logo sobre el nombre. El video es blanco sobre negro: screen deja ver solo el trazo.
+   El logo ocupa el 70 % central del cuadro, los márgenes negativos lo alinean con el texto. */
+.hero__mark { --mark: clamp(104px, min(12vw, 17vh), 200px); width: var(--mark); aspect-ratio: 1; margin: calc(var(--mark) * -.12) 0 calc(var(--mark) * -.1) calc(var(--mark) * -.147); }
+.hero__anim, .hero__mark img { display: block; width: 100%; height: 100%; mix-blend-mode: screen; }
+.hero__mark img { padding: 14.7%; mix-blend-mode: normal; }
 .hero__content { position: relative; max-width: var(--maxw); width: 100%; margin: 0 auto; }
-.hero__name { margin: 0; font: 400 clamp(5.2rem, 20vw, 18rem)/.8 var(--f-display); text-transform: uppercase; letter-spacing: -.01em; }
+.hero__name { margin: 0; font: 400 clamp(5.2rem, min(19vw, 22vh), 18rem)/.8 var(--f-display); text-transform: uppercase; letter-spacing: -.01em; }
 .hero__line { display: block; }
 .hero__line--outline { color: transparent; -webkit-text-stroke: 2px var(--crema); padding-left: .5em; }
 .hero__tag { margin: 28px 0 32px; font: 400 clamp(1.6rem, 3.4vw, 2.8rem)/1.1 var(--f-serif); }
@@ -344,7 +349,7 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
   .nav__links a { font: 400 clamp(2.6rem, 12vw, 4rem)/1.1 var(--f-display); letter-spacing: .02em; opacity: 1; }
   .nav.is-open .nav__links { opacity: 1; pointer-events: auto; }
   .nav.is-open { color: var(--crema); }
-  .nav.is-open .logo { filter: none !important; mix-blend-mode: screen !important; }
+  .nav.is-open .logo { filter: none !important; }
   .nav__toggle { display: grid; gap: 6px; width: 44px; height: 44px; place-content: center; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; }
   .nav__toggle span { display: block; width: 24px; height: 2px; background: currentColor; transition: transform .3s var(--ease); }
   .nav.is-open .nav__toggle span:first-child { transform: translateY(4px) rotate(45deg); }
@@ -369,6 +374,7 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
 
   /* Portada: la cara arriba, el texto sobre el cuerpo y aire para el botón inferior */
   .hero { padding-bottom: 104px; }
+  .hero__mark { --mark: 104px; }
   .hero__media img { object-position: 35% 12%; }
   .hero__tag { margin: 20px 0 24px; }
   .hero__cta { flex-wrap: nowrap; gap: 10px; }
