@@ -305,9 +305,10 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
 .footer { position: relative; background: var(--noche); color: var(--crema); padding: 80px 0 32px; }
 .footer__grid { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
 .footer__brand p { margin: 16px 0 0; font: italic 400 1.6rem/1.2 var(--f-serif); color: var(--mango); }
-.socials { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, auto); gap: 14px 40px; }
-.socials a { text-decoration: none; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; font-size: .82rem; opacity: .8; }
-.socials a:hover { opacity: 1; color: var(--mango); }
+.socials { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; max-width: 470px; }
+.socials a { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(244, 236, 221, .22); color: var(--crema); transition: background .25s, color .25s, border-color .25s, transform .25s var(--ease); }
+.socials a:hover, .socials a:focus-visible { background: var(--mango); border-color: var(--mango); color: var(--violeta-noche); transform: translateY(-2px); }
+.socials svg { width: 20px; height: 20px; fill: currentColor; }
 .footer__base { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(244, 236, 221, .14); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--lila); }
 
 /* ───────── Botón «siguiente sección» ───────── */
@@ -394,11 +395,11 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
   .form { padding: 24px 20px; }
   .footer { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
   .footer__base { flex-direction: column; gap: 6px; }
+  .socials { display: grid; grid-template-columns: repeat(4, 48px); gap: 12px 14px; }
 
   .next { width: 46px; height: 46px; bottom: calc(14px + env(safe-area-inset-bottom)); }
   .nav__brand span { display: none; }
   .form__row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .socials { grid-template-columns: repeat(2, auto); }
   .shot--wide { grid-column: span 2; }
   .hero__line--outline { -webkit-text-stroke-width: 1.5px; }
   .lyrics { height: 160vh; height: 160svh; }
