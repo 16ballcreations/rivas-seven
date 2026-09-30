@@ -115,8 +115,21 @@
     e.preventDefault();
     say('Disponible en la versión final.');
   }));
-  document.querySelector('[data-demo-form]').addEventListener('submit', e => {
+  // ── Formulario de contrataciones: abre el correo del visitante con la solicitud armada
+  const mailForm = document.querySelector('[data-mail-form]');
+  mailForm.addEventListener('submit', e => {
     e.preventDefault();
-    e.target.querySelector('.form__note').textContent = 'Maqueta: la solicitud aún no se envía a ningún lado.';
+    const d = new FormData(mailForm);
+    const subject = `Solicitud de contratación · ${d.get('tipo')} · ${d.get('nombre')}`;
+    const body = [
+      `Nombre: ${d.get('nombre')}`,
+      `Tipo de evento: ${d.get('tipo')}`,
+      `Ciudad: ${d.get('ciudad') || '—'}`,
+      `Fecha: ${d.get('fecha') || '—'}`,
+      '',
+      d.get('mensaje') || '',
+    ].join('\n');
+    location.href = `mailto:${mailForm.dataset.to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    mailForm.querySelector('.form__note').textContent = '¿No se abrió tu correo? Escríbeme a ' + mailForm.dataset.to;
   });
 })();

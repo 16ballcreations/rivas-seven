@@ -50,7 +50,8 @@ Las fotos se pasan a blanco y negro y se tiñen con un degradado violeta → man
 | `assets/img/logo-s7-original.png` | Logo sacado de un video (blanco sobre negro) |
 | `docs/` | Notas de la propuesta |
 
-Sin frameworks ni build. Lleva `noindex`. El formulario no envía datos.
+Sin frameworks ni build. Lleva `noindex`. El formulario no usa servidor: abre el correo del
+visitante con la solicitud armada para rivasse7en@gmail.com.
 
 ## Contenido: de dónde sale y qué falta confirmar
 
@@ -70,8 +71,8 @@ Sin frameworks ni build. Lleva `noindex`. El formulario no envía datos.
 Por confirmar antes de publicar:
 
 - [ ] Año y enlace de «Con Too» (ft. Soniko)
-- [ ] Enlace de Apple Music (el del perfil de ADS Virales da 404)
-- [ ] Número de WhatsApp o correo de contrataciones que quiere mostrar
+- [x] Enlaces oficiales: Spotify, YouTube Music, Apple Music y Facebook (los dio él)
+- [x] WhatsApp y correo de contrataciones (rivasse7en@gmail.com)
 - [ ] Kit de prensa (PDF)
 - [ ] Si «Iracema» y «Sándalo» van en la cara «de día» (hoy están ahí por ser afrobeat)
 - [ ] Unificar su nombre en plataformas: Instagram dice «Rivas Seven», Spotify/TikTok/SoundCloud «Seven Rivas»
