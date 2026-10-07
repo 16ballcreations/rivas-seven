@@ -82,9 +82,15 @@ Por confirmar antes de publicar:
 
 ## Idiomas
 
-Solo español por ahora. En cola: **portugués (Brasil)** y **inglés (EE. UU.)**. El selector
-ya está en la barra (PT y EN aparecen como «próximamente»). La idea es duplicar `index.html`
-en `/pt/` y `/en/` cuando el texto esté aprobado.
+Español (`/`), portugués de Brasil (`/pt/`) e inglés (`/en/`), con banderas de Colombia, Brasil y
+Estados Unidos en la barra superior. Cada versión declara las otras con `hreflang` para Google.
+
+- **El español es la fuente.** Se edita `index.html` y se regeneran las otras dos con
+  `node scripts/build-i18n.mjs`. La tabla de traducciones está en ese script: si un texto en
+  español cambia, el script avisa cuál falta y no escribe nada.
+- La letra de «Último Estado» y el sello «El creador de las vainas» se quedan en español a propósito.
+- Los textos del JavaScript (menú, botón inferior, formulario) están en `assets/js/main.js` y se
+  eligen según el `lang` de la página.
 
 ## Publicación en Cloudflare
 

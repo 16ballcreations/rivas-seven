@@ -1,8 +1,36 @@
-// Rivas Seven — propuesta 16 Ball Creations
+// Rivas Seven — sitio por 16 Ball Creations
 // El scroll hace amanecer la página: noche violeta → sol mango → crema.
 
 (() => {
   const root = document.documentElement;
+
+  // ── Textos del script según el idioma de la página (<html lang>)
+  const T = {
+    es: {
+      menuOpen: 'Abrir menú', menuClose: 'Cerrar menú',
+      next: 'Ir a la siguiente sección', top: 'Volver al inicio',
+      soon: 'Disponible muy pronto.',
+      subject: 'Solicitud de contratación', name: 'Nombre', type: 'Tipo de evento', city: 'Ciudad', date: 'Fecha',
+      noMail: '¿No se abrió tu correo? Escríbeme a ',
+    },
+    pt: {
+      menuOpen: 'Abrir menu', menuClose: 'Fechar menu',
+      next: 'Ir para a próxima seção', top: 'Voltar ao início',
+      soon: 'Disponível em breve.',
+      subject: 'Pedido de contratação', name: 'Nome', type: 'Tipo de evento', city: 'Cidade', date: 'Data',
+      noMail: 'Seu e-mail não abriu? Me escreve em ',
+    },
+    en: {
+      menuOpen: 'Open menu', menuClose: 'Close menu',
+      next: 'Go to the next section', top: 'Back to top',
+      soon: 'Coming soon.',
+      subject: 'Booking request', name: 'Name', type: 'Event type', city: 'City', date: 'Date',
+      noMail: 'Email app didn\x27t open? Write me at ',
+    },
+  };
+  const t = T[root.lang.slice(0, 2)] || T.es;
+  // Rutas de assets relativas a este script: sirven igual en /, /pt/ y /en/
+  const assetUrl = path => new URL('../' + path, document.currentScript.src).href;
   const nav = document.querySelector('.nav');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -70,7 +98,7 @@
   const setMenu = open => {
     nav.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', open);
-    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    toggle.setAttribute('aria-label', open ? t.menuClose : t.menuOpen);
     document.body.style.overflow = open ? 'hidden' : '';
   };
   toggle.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
@@ -83,7 +111,7 @@
   const syncNext = () => {
     const last = !nextStop() || innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
     next.classList.toggle('is-last', last);
-    next.setAttribute('aria-label', last ? 'Volver al inicio' : 'Ir a la siguiente sección');
+    next.setAttribute('aria-label', last ? t.top : t.next);
   };
   next.addEventListener('click', () => {
     const target = next.classList.contains('is-last') ? null : nextStop();
@@ -95,10 +123,11 @@
   // ── Animación del logo en la portada: se reproduce una vez y queda en el último cuadro.
   // Sin movimiento reducido o si el navegador bloquea el autoplay, se muestra el logo fijo.
   const anim = document.querySelector('.hero__anim');
+  const logoSrc = assetUrl('img/logo-s7-512.png');
   if (anim) {
     const toStatic = () => {
       const img = document.createElement('img');
-      img.src = 'assets/img/logo-s7-512.png';
+      img.src = logoSrc;
       img.alt = '';
       anim.replaceWith(img);
     };
@@ -127,23 +156,23 @@
   };
   document.querySelectorAll('.is-pending').forEach(el => el.addEventListener('click', e => {
     e.preventDefault();
-    say('Disponible en la versión final.');
+    say(t.soon);
   }));
   // ── Formulario de contrataciones: abre el correo del visitante con la solicitud armada
   const mailForm = document.querySelector('[data-mail-form]');
   mailForm.addEventListener('submit', e => {
     e.preventDefault();
     const d = new FormData(mailForm);
-    const subject = `Solicitud de contratación · ${d.get('tipo')} · ${d.get('nombre')}`;
+    const subject = `${t.subject} · ${d.get('tipo')} · ${d.get('nombre')}`;
     const body = [
-      `Nombre: ${d.get('nombre')}`,
-      `Tipo de evento: ${d.get('tipo')}`,
-      `Ciudad: ${d.get('ciudad') || '—'}`,
-      `Fecha: ${d.get('fecha') || '—'}`,
+      `${t.name}: ${d.get('nombre')}`,
+      `${t.type}: ${d.get('tipo')}`,
+      `${t.city}: ${d.get('ciudad') || '—'}`,
+      `${t.date}: ${d.get('fecha') || '—'}`,
       '',
       d.get('mensaje') || '',
     ].join('\n');
     location.href = `mailto:${mailForm.dataset.to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    mailForm.querySelector('.form__note').textContent = '¿No se abrió tu correo? Escríbeme a ' + mailForm.dataset.to;
+    mailForm.querySelector('.form__note').textContent = t.noMail + mailForm.dataset.to;
   });
 })();
