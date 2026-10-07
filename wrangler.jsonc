@@ -2,16 +2,21 @@
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
   "name": "rivas-seven",
   "compatibility_date": "2026-10-07",
-  // Sitio 100 % estático: Cloudflare sirve los archivos de la raíz del repo tal cual.
-  // Lo que no es parte de la web (README, docs, config) queda fuera con .assetsignore.
+  // Sitio estático: Cloudflare sirve los archivos de la raíz del repo tal cual.
+  // Lo que no es parte de la web (README, docs, config, worker) queda fuera con .assetsignore.
+  // El Worker corre primero solo para redirigir http → https y www → dominio sin www.
+  "main": "worker/index.js",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "binding": "ASSETS",
+    "run_worker_first": true
   },
   // Dirección de prueba .workers.dev: sirve para revisar el sitio sin tocar el dominio.
-  "workers_dev": true
-  // Cuando se compre el dominio, se agrega aquí (y el www, para que ningún enlace muera):
-  // "routes": [
-  //   { "pattern": "dominio.com", "custom_domain": true },
-  //   { "pattern": "www.dominio.com", "custom_domain": true }
-  // ]
+  "workers_dev": true,
+  // El sitio vive en rivasseven.com. El www también se atiende aquí para que ningún enlace
+  // muera; la etiqueta canónica apunta siempre al dominio sin www.
+  "routes": [
+    { "pattern": "rivasseven.com", "custom_domain": true },
+    { "pattern": "www.rivasseven.com", "custom_domain": true }
+  ]
 }

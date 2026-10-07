@@ -52,7 +52,7 @@ Las fotos se pasan a blanco y negro y se tiñen con un degradado violeta → man
 | `assets/video/logo-animacion.mp4` | Animación del logo (480 px, sin audio) que se reproduce una vez sobre el nombre |
 | `docs/` | Notas de la propuesta |
 
-Sin frameworks ni build. Lleva `noindex`. El formulario no usa servidor: abre el correo del
+Sin frameworks ni build. Indexable desde que vive en rivasseven.com. El formulario no usa servidor: abre el correo del
 visitante con la solicitud armada para rivasse7en@gmail.com.
 
 ## Contenido: de dónde sale y qué falta confirmar
@@ -88,23 +88,19 @@ en `/pt/` y `/en/` cuando el texto esté aprobado.
 
 ## Publicación en Cloudflare
 
-El sitio vive en un Worker de Cloudflare con archivos estáticos (igual que psicoformando), en la
-cuenta de 16 Ball Creations:
+El sitio oficial vive en **https://rivasseven.com**, servido por un Worker de Cloudflare con
+archivos estáticos en la cuenta de 16 Ball Creations (igual que psicoformando).
 
+- Dominio comprado en GoDaddy; los servidores de nombres apuntan a Cloudflare
+  (`gail` y `houston.ns.cloudflare.com`), así que el DNS se administra en Cloudflare.
+- `wrangler.jsonc` conecta `rivasseven.com` y `www.rivasseven.com` como dominios propios.
+- `worker/index.js` solo redirige: `http` → `https` y `www` → dominio sin www (301).
+  Todo lo demás son los archivos tal cual.
+- `.assetsignore` deja fuera de la web README, docs, config, worker y .git.
 - Dirección de prueba: https://rivas-seven.16ballcreations.workers.dev
-- Configuración: `wrangler.jsonc`. Lo que no es parte de la web (README, docs, config, .git)
-  queda fuera con `.assetsignore`.
-- Para publicar un cambio: `npx wrangler deploy` desde la raíz del repo. No se publica solo al
-  hacer push; GitHub Pages sí se actualiza solo y queda como copia de la propuesta.
-
-**Cuando se compre el dominio:**
-
-1. Comprarlo en Cloudflare (o, si se compra en otro lado, agregarlo a Cloudflare como zona y
-   cambiar los nameservers donde se compró).
-2. Descomentar `routes` en `wrangler.jsonc` con el dominio y el www, y volver a desplegar.
-   Cloudflare crea los DNS y el certificado.
-3. Quitar `noindex` de `index.html` para que aparezca en Google, y cambiar `og:image` a una
-   ruta del propio dominio.
+- **Para publicar un cambio:** `npx wrangler deploy` desde la raíz. El push a GitHub no lo
+  publica en el dominio; GitHub Pages queda como copia de la propuesta (con `canonical` al
+  dominio para que Google no las cuente como duplicadas).
 
 ## Desarrollo
 
