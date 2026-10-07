@@ -86,6 +86,26 @@ Solo español por ahora. En cola: **portugués (Brasil)** y **inglés (EE. UU.)*
 ya está en la barra (PT y EN aparecen como «próximamente»). La idea es duplicar `index.html`
 en `/pt/` y `/en/` cuando el texto esté aprobado.
 
+## Publicación en Cloudflare
+
+El sitio vive en un Worker de Cloudflare con archivos estáticos (igual que psicoformando), en la
+cuenta de 16 Ball Creations:
+
+- Dirección de prueba: https://rivas-seven.16ballcreations.workers.dev
+- Configuración: `wrangler.jsonc`. Lo que no es parte de la web (README, docs, config, .git)
+  queda fuera con `.assetsignore`.
+- Para publicar un cambio: `npx wrangler deploy` desde la raíz del repo. No se publica solo al
+  hacer push; GitHub Pages sí se actualiza solo y queda como copia de la propuesta.
+
+**Cuando se compre el dominio:**
+
+1. Comprarlo en Cloudflare (o, si se compra en otro lado, agregarlo a Cloudflare como zona y
+   cambiar los nameservers donde se compró).
+2. Descomentar `routes` en `wrangler.jsonc` con el dominio y el www, y volver a desplegar.
+   Cloudflare crea los DNS y el certificado.
+3. Quitar `noindex` de `index.html` para que aparezca en Google, y cambiar `og:image` a una
+   ruta del propio dominio.
+
 ## Desarrollo
 
 ```bash

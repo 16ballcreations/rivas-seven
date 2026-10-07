@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "rivas-seven",
+  "compatibility_date": "2026-10-07",
+  // Sitio 100 % estático: Cloudflare sirve los archivos de la raíz del repo tal cual.
+  // Lo que no es parte de la web (README, docs, config) queda fuera con .assetsignore.
+  "assets": {
+    "directory": "./"
+  },
+  // Dirección de prueba .workers.dev: sirve para revisar el sitio sin tocar el dominio.
+  "workers_dev": true
+  // Cuando se compre el dominio, se agrega aquí (y el www, para que ningún enlace muera):
+  // "routes": [
+  //   { "pattern": "dominio.com", "custom_domain": true },
+  //   { "pattern": "www.dominio.com", "custom_domain": true }
+  // ]
+}
