@@ -328,6 +328,9 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; }
 @keyframes nudge { 0%, 60%, 100% { translate: 0 0; } 30% { translate: 0 4px; } }
 .nav.is-open ~ .next { opacity: 0; pointer-events: none; }
 
+.footer__base a { color: var(--mango); text-decoration: none; }
+.footer__base a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
 .toast { position: fixed; left: 50%; bottom: 24px; z-index: 60; transform: translate(-50%, 140%); padding: 14px 22px; border-radius: 999px; background: var(--violeta-noche); color: var(--crema); font-size: .9rem; transition: transform .4s var(--ease); }
 .toast.show { transform: translate(-50%, 0); }
 
